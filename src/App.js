@@ -53,6 +53,8 @@ const App = () => {
         const newPlaces = [...places, newPlace];
         placeFormData = [...places, newPlace];
         setPlaces(newPlaces);
+        
+        handleChange();
         console.log(placeFormData);
     }
 
@@ -60,45 +62,8 @@ const App = () => {
         places: placeFormData,
         editPlaceId: editPlaceId
     }
-    let toggle = 0;
 
-    return (
-        <div>
-            <button onClick={() => handleChange()}>click me</button>
-            {changeText ?  <PlaceTable {...props} /> :  <div className="app-container">
-                <h2>Add Place</h2>
-                <form onSubmit={handleAddFormSubmit}>
-                    Name :<input
-                        type="text"
-                        name="placeName"
-                        required='required'
-                        onChange={handleAddFormChange} />
-
-                    Address :<input
-                        type="text"
-                        name="address"
-                        id="address"
-                        onChange={handleAddFormChange} />
-
-                    Rating (1-5):<input
-                        type="number"
-                        name="rating"
-                        id="rating"
-                        min="1" max="5"
-                        onChange={handleAddFormChange} />
-
-                    {/* Picture:<br></br>
-                <input type="file" id="imgPlace" onchange="previewFile()" />
-                <br>
-                </br> */}
-                    <button type="submit">Add</button>
-                </form>
-            </div>}
-        </div>
-    );
-
-  
-    if (toggle === 0) {
+    const toggle = () => {
         return (
             <div className="app-container">
                 <h2>Add Place</h2>
@@ -123,14 +88,20 @@ const App = () => {
                         onChange={handleAddFormChange} />
 
                     {/* Picture:<br></br>
-                <input type="file" id="imgPlace" onchange="previewFile()" />
-                <br>
-                </br> */}
-                    <button type="submit">Add</button>
+<input type="file" id="imgPlace" onchange="previewFile()" />
+<br>
+</br> */}
+                    <button type="submit" >Add</button>
                 </form>
-            </div>
-        );
+            </div>);
+    }
+    return (
+        <div>
+            <button onClick={() => handleChange()}>{changeText ? "Add Place" : "Place List"}</button>
+            {changeText ? <PlaceTable {...props} /> : toggle()}
+        </div>
+    );
 
-    }}
+}
 
-    export default App;
+export default App;
