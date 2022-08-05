@@ -20,7 +20,9 @@ function PlaceTable(props) {
             { props.places.map((place) => (
                 <Fragment key= {place.id }>
                     {props.editPlaceId === place.id ?
-                        (<EditTableRow />) : (< ReadOnlyRow place={place} />)}
+                         (< ReadOnlyRow place={place} />)
+                        // (<EditTableRow place={place}/>) 
+                        : (< ReadOnlyRow place={place} />)}
                 </Fragment>
             ))}
 

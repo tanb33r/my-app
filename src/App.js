@@ -53,7 +53,7 @@ const App = () => {
         const newPlaces = [...places, newPlace];
         placeFormData = [...places, newPlace];
         setPlaces(newPlaces);
-        
+
         handleChange();
         console.log(placeFormData);
     }
@@ -63,7 +63,7 @@ const App = () => {
         editPlaceId: editPlaceId
     }
 
-    const toggle = () => {
+    const placeTableFunc = () => {
         return (
             <div className="app-container">
                 <h2>Add Place</h2>
@@ -98,7 +98,8 @@ const App = () => {
     return (
         <div>
             <button onClick={() => handleChange()}>{changeText ? "Add Place" : "Place List"}</button>
-            {changeText ? <PlaceTable {...props} /> : toggle()}
+            {/* {changeText ? <PlaceTable {...props} /> : placeTableFunc()} */}
+            {changeText ? <PlaceTable {...props} /> : placeTableFunc()}
         </div>
     );
 
