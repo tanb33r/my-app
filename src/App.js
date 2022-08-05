@@ -64,7 +64,12 @@ const App = () => {
             <div className="app-container">
                 <PlaceTable {...props} />
 
-
+            </div>
+        );
+    }
+     if (toggle === 0) {
+        return (
+            <div className="app-container">
                 <h2>Add Place</h2>
                 <form onSubmit={handleAddFormSubmit}>
                     Name :<input
@@ -92,11 +97,9 @@ const App = () => {
                 </br> */}
                     <button type="submit">Add</button>
                 </form>
-
-
             </div>
         );
     }
-};
+}
 
 export default App;
