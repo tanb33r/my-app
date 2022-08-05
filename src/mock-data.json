@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "placeName": "Jenny Chan",
+    "address": "3 waterfoot road",
+    "rating": "1" 
+  },
+  {
+    "id": 2,
+    "placeName": "Jessica warren",
+    "address": "4 tall town",
+    "rating": "3" 
+  },
+  {
+    "id": 3,
+    "placeName": "Tony Frank",
+    "address": "11 lesly road",
+    "rating": "4" 
+  }
+]
