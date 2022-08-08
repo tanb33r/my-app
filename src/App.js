@@ -1,108 +1,76 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
 // import data from "./mock-data.json";
-import ReadOnlyRow from "./components/ReadOnlyRow";
-import EditTableRow from "./components/EditTableRow";
+// import ReadOnlyRow from "./components/ReadOnlyRow";
+// import EditTableRow from "./components/EditTableRow";
 import PlaceTable from "./components/PlaceTable";
-var placeFormData = [
-    {
-        "id": 1,
-        "placeName": "Jenny Chan",
-        "address": "3 waterfoot road",
-        "rating": "1"
-    }
-]
+import Form from "./components/Form";
+// var placeFormData = [
+//   {
+//     id: 1,
+//     placeName: "Jenny Chan",
+//     address: "3 waterfoot road",
+//     rating: "1",
+//   },
+// ];
 // var placeFormData = data;
 
 const App = () => {
-    let [changeText, setChangeText] = useState(true);
-    const handleChange = () => {
-        return setChangeText(!changeText);
+  const [changeText, setChangeText] = useState(true);
+  const [places, setPlaces] = useState(
+    JSON.parse(localStorage.getItem("places")) || []
+  );
+  const [addFormData, setAddFormData] = useState({
+    placeName: "",
+    address: "",
+    rating: "",
+  });
+
+  const handleChange = () => {
+    setChangeText(!changeText);
+  };
+
+  const handleAddFormChange = (e, place) => {
+    e.preventDefault();
+    const fieldName = e.target.name;
+    const fieldValue = e.target.value;
+    const newFormData = { ...addFormData };
+    newFormData[fieldName] = fieldValue; // maybe write like newFormData[e.target.name] = e.target.value
+
+    setAddFormData(newFormData);
+  };
+
+  const handleAddFormSubmit = (e) => {
+    e.preventDefault();
+    const newPlace = {
+      id: nanoid(),
+      placeName: addFormData.placeName,
+      address: addFormData.address,
+      rating: addFormData.rating,
     };
 
-    const [places, setPlaces] = useState(placeFormData);
-    const [addFormData, setAddFormData] = useState({
-        placeName: "",
-        address: "",
-        rating: ""
-    });
+    setPlaces([...places, newPlace]);
 
-    const [editPlaceId, setEditPlaceId] = useState(null);
-    const handleAddFormChange = (e) => {
-        e.preventDefault();
-        const fieldName = e.target.getAttribute('name');
-        const fieldValue = e.target.value;
-        const newFormData = { ...addFormData };
-        newFormData[fieldName] = fieldValue;
+    handleChange();
+  };
 
-        setAddFormData(newFormData);
-    }
+  return (
+    <div>
+      <button onClick={() => handleChange()}>
+        {!changeText ? "Place List" : "Add Place"}
+      </button>
 
-
-    const handleAddFormSubmit = (e) => {
-        e.preventDefault();
-
-        const newPlace = {
-            id: nanoid(),
-            placeName: addFormData.placeName,
-            address: addFormData.address,
-            rating: addFormData.rating
-            // placeName: addFormData.placeName,
-        }
-        const newPlaces = [...places, newPlace];
-        placeFormData = [...places, newPlace];
-        setPlaces(newPlaces);
-
-        handleChange();
-        console.log(placeFormData);
-    }
-
-    let props = {
-        places: placeFormData,
-        editPlaceId: editPlaceId
-    }
-
-    const placeTableFunc = () => {
-        return (
-            <div className="app-container">
-                <h2>Add Place</h2>
-                <form onSubmit={handleAddFormSubmit}>
-                    Name :<input
-                        type="text"
-                        name="placeName"
-                        required='required'
-                        onChange={handleAddFormChange} />
-
-                    Address :<input
-                        type="text"
-                        name="address"
-                        id="address"
-                        onChange={handleAddFormChange} />
-
-                    Rating (1-5):<input
-                        type="number"
-                        name="rating"
-                        id="rating"
-                        min="1" max="5"
-                        onChange={handleAddFormChange} />
-
-                    {/* Picture:<br></br>
-<input type="file" id="imgPlace" onchange="previewFile()" />
-<br>
-</br> */}
-                    <button type="submit" >Add</button>
-                </form>
-            </div>);
-    }
-    return (
-        <div>
-            <button onClick={() => handleChange()}>{changeText ? "Add Place" : "Place List"}</button>
-            {/* {changeText ? <PlaceTable {...props} /> : placeTableFunc()} */}
-            {changeText ? <PlaceTable {...props} /> : placeTableFunc()}
-        </div>
-    );
-
-}
+      {!changeText ? (
+        <Form
+          handleAddFormSubmit={handleAddFormSubmit}
+          handleAddFormChange={handleAddFormChange}
+        />
+      ) : (
+        <PlaceTable places={places} setPlaces={setPlaces} />
+      )}
+    </div>
+  );
+};
 
 export default App;

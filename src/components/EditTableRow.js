@@ -1,8 +1,6 @@
 import React from "react";
 
 const EditTableRow = ({ place, handleEditClick, handleDeleteClick }) => {
-  
-  
   return
   (<div>
     <button type="submit">Add</button>
