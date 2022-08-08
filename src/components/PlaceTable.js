@@ -20,14 +20,13 @@ const PlaceTable = ({ places, setPlaces }) => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
     const newFormData = { ...onClickPlace };
-    newFormData[fieldName] = fieldValue; // maybe write like newFormData[e.target.name] = e.target.value
+    newFormData[fieldName] = fieldValue; // newFormData[e.target.name] = e.target.value
     setOnClickPlace(newFormData);
   };
 
   const handleEditFormSubmit = (e) => {
     e.preventDefault();
-    const newPlace = {
-    //   id: nanoid(), // not necessary i think
+    const newPlace = { 
       placeName: onClickPlace.placeName,
       address: onClickPlace.address,
       rating: onClickPlace.rating,
@@ -53,7 +52,7 @@ const PlaceTable = ({ places, setPlaces }) => {
         <tbody>
           <Fragment>
             <TableRow addPlaces={places} setShowForm={setShowForm} 
-            setOnClickPlace={setOnClickPlace} setEditIndex={setEditIndex}/>
+            setOnClickPlace={setOnClickPlace} setEditIndex={setEditIndex} setPlaces={setPlaces}/>
           </Fragment>
         </tbody>
       </table>

@@ -1,41 +1,62 @@
 .app-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 1rem;
-  }
-  
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  th,
-  td {
-    border: 1px solid #ffffff;
-    text-align: left;
-    padding: 8px;
-    font-size: 32px;
-  }
-  
-  th {
-    background-color: rgb(117, 201, 250);
-  }
-  
-  td {
-    background-color: rgb(205, 235, 253);
-  }
-  
-  form {
-    display: flex;
-    gap: 5px;
-  }
-  
-  form td:last-child {
-    display: flex;
-    justify-content: space-evenly;
-  }
-  
-  form * {
-    font-size: 28px;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+  align-items: center;
+}
+
+.toggle-button {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  align-items: center;
+  align-self: center;
+  margin-bottom: 1rem;
+}
+#tablePlaces{
+margin-top: 1rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+  align-self: center;
+  gap: 5px;
+}
+
+button[type='action-button'] {
+  margin: .5rem;
+}
+
+table {
+  padding: 1rem;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: small;
+}
+
+th,
+td {
+  border: 1px solid #ffffff;
+  text-align: left;
+  padding: .5rem;
+  font-size: 20px;
+}
+
+th {
+  background-color: rgb(117, 201, 250);
+}
+
+td {
+  background-color: rgb(205, 235, 253);
+}
+
+form td:last-child {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+form * {
+  font-size: 28px;
+}

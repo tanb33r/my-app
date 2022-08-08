@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Form(props) {
   return (
@@ -31,9 +33,16 @@ export default function Form(props) {
           onChange={props.handleAddFormChange}
           defaultValue={props.value?.rating}
         />
-        <button type="submit">
+        Picture:<br></br><input
+          type="file" id="imgPlace"
+          // onchange={"previewFile()"} 
+          />
+        <img src="" height="40px" width="40px" id="img" alt="Image preview" />
+        <br></br>
+
+        <Button type="submit">
           {props.hasOwnProperty("value") ? "Update" : "Add"}
-        </button>
+        </Button>
       </form>
     </div>
   );

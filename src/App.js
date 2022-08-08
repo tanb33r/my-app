@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
+import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // import data from "./mock-data.json";
 // import ReadOnlyRow from "./components/ReadOnlyRow";
 // import EditTableRow from "./components/EditTableRow";
@@ -17,10 +20,15 @@ import Form from "./components/Form";
 // var placeFormData = data;
 
 const App = () => {
-  const [changeText, setChangeText] = useState(true);
+  const [changeText, setChangeText] = useState(false);
   const [places, setPlaces] = useState(
-    JSON.parse(localStorage.getItem("places")) || []
+    JSON.parse(localStorage.getItem("places")) || [] 
   );
+
+  // console.log(places);
+  // places.map((val, idx)=>{
+  //   console.log(idx, val);
+  // })
   const [addFormData, setAddFormData] = useState({
     placeName: "",
     address: "",
@@ -56,10 +64,10 @@ const App = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => handleChange()}>
+    <div className='toggle-button'>
+      <Button  onClick={() => handleChange()}>
         {!changeText ? "Place List" : "Add Place"}
-      </button>
+      </Button>
 
       {!changeText ? (
         <Form
